@@ -1,42 +1,156 @@
+
 <template>
-  <section class="text-center">
-    <h1 class="otaku-title text-5xl mb-4">Bienvenue sur OtakuStream !</h1>
-    <p class="text-lg text-purple-700 mb-8 font-semibold">Découvre les meilleurs animés et mangas, explore l'univers Otaku !</p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-      <div v-for="anime in featuredAnimes" :key="anime.id" class="card-anime">
-        <img :src="anime.image" :alt="anime.title" class="w-32 h-44 object-cover rounded mb-3 border-2 border-pink-200 shadow-lg" />
-        <h2 class="otaku-title text-2xl text-purple-700 mb-1">{{ anime.title }}</h2>
-        <div class="mb-2">
-          <span v-for="genre in anime.genres" :key="genre" class="badge-genre">{{ genre }}</span>
+  <div>
+    <HeroSection />
+    
+    <section class="py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="otaku-title text-4xl text-center mb-12 animate-bounce">
+          Animes Populaires
+        </h2>
+        
+        <div v-if="loading" class="flex justify-center">
+          <LoadingSpinner message="Chargement des animes populaires..." />
         </div>
-        <p class="text-sm text-gray-600 mt-2">{{ anime.synopsis }}</p>
+        
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div 
+            v-for="(anime, index) in featuredAnimes" 
+            :key="anime.id"
+            class="anime-card-container"
+            :style="{ animationDelay: `${index * 0.1}s` }"
+          >
+            <AnimeCard 
+              :anime="anime" 
+              @click="$router.push(`/animes/${anime.id}`)"
+            />
+          </div>
+        </div>
+        
+        <div class="text-center mt-12">
+          <router-link 
+            to="/animes"
+            class="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full font-bold text-lg hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Voir tous les animes
+          </router-link>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+    
+    <section class="bg-gray-50 py-16 px-4">
+      <div class="max-w-7xl mx-auto text-center">
+        <h2 class="otaku-title text-4xl mb-8">Pourquoi AnimeStream ?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="feature-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            <div class="text-6xl mb-4">🎌</div>
+            <h3 class="text-xl font-bold mb-2">Vaste Collection</h3>
+            <p class="text-gray-600">Des milliers d'animes classiques et récents</p>
+          </div>
+          <div class="feature-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            <div class="text-6xl mb-4">⚡</div>
+            <h3 class="text-xl font-bold mb-2">Streaming Rapide</h3>
+            <p class="text-gray-600">Qualité HD avec un chargement ultra-rapide</p>
+          </div>
+          <div class="feature-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            <div class="text-6xl mb-4">💖</div>
+            <h3 class="text-xl font-bold mb-2">Interface Intuitive</h3>
+            <p class="text-gray-600">Navigation simple et design moderne</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
-<script setup>
-const featuredAnimes = [
-  {
-    id: 1,
-    title: 'Demon Slayer',
-    image: 'https://cdn.myanimelist.net/images/anime/1286/99889.jpg',
-    synopsis: 'Un jeune pourfendeur de démons part sauver sa soeur.',
-    genres: ['Action', 'Fantastique'],
+<script>
+import HeroSection from '../components/HeroSection.vue'
+import AnimeCard from '../components/AnimeCard.vue'
+import LoadingSpinner from '../components/LoadingSpinner.vue'
+
+export default {
+  name: 'Home',
+  components: {
+    HeroSection,
+    AnimeCard,
+    LoadingSpinner
   },
-  {
-    id: 2,
-    title: 'My Hero Academia',
-    image: 'https://cdn.myanimelist.net/images/anime/10/78745.jpg',
-    synopsis: 'Dans un monde de super-pouvoirs, un garçon rêve de devenir un héros.',
-    genres: ['Action', 'Super-pouvoirs'],
+  data() {
+    return {
+      loading: true,
+      featuredAnimes: []
+    }
   },
-  {
-    id: 3,
-    title: 'Attack on Titan',
-    image: 'https://cdn.myanimelist.net/images/anime/10/47347.jpg',
-    synopsis: 'L\'humanité lutte pour survivre face aux titans.',
-    genres: ['Action', 'Drame'],
+  mounted() {
+    this.loadFeaturedAnimes()
   },
-]
-</script> 
+  methods: {
+    async loadFeaturedAnimes() {
+      // Simulation d'un appel API
+      setTimeout(() => {
+        this.featuredAnimes = [
+          {
+            id: 1,
+            title: "Attack on Titan",
+            description: "L'humanité vit dans des villes entourées d'énormes murs pour se protéger des Titans...",
+            image: "https://via.placeholder.com/300x400/FF69B4/FFFFFF?text=Attack+on+Titan",
+            genres: ["Action", "Drame", "Fantasy"],
+            rating: 5,
+            status: "Terminé"
+          },
+          {
+            id: 2,
+            title: "Demon Slayer",
+            description: "Tanjiro Kamado devient un chasseur de démons pour sauver sa sœur...",
+            image: "https://via.placeholder.com/300x400/9932CC/FFFFFF?text=Demon+Slayer",
+            genres: ["Action", "Supernatural", "Historique"],
+            rating: 4.8,
+            status: "En cours"
+          },
+          {
+            id: 3,
+            title: "One Piece",
+            description: "Monkey D. Luffy part à l'aventure pour devenir le roi des pirates...",
+            image: "https://via.placeholder.com/300x400/FF4500/FFFFFF?text=One+Piece",
+            genres: ["Aventure", "Comédie", "Action"],
+            rating: 4.9,
+            status: "En cours"
+          },
+          {
+            id: 4,
+            title: "My Hero Academia",
+            description: "Dans un monde où 80% de la population a des super-pouvoirs...",
+            image: "https://via.placeholder.com/300x400/32CD32/FFFFFF?text=My+Hero+Academia",
+            genres: ["Action", "École", "Super-héros"],
+            rating: 4.7,
+            status: "En cours"
+          }
+        ]
+        this.loading = false
+      }, 2000)
+    }
+  }
+}
+</script>
+
+<style scoped>
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anime-card-container {
+  animation: slideInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.feature-card {
+  animation: slideInUp 0.8s ease-out forwards;
+}
+</style>

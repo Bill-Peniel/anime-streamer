@@ -1,57 +1,36 @@
-<script setup>
-// Pas de logique spécifique ici
-</script>
-
 <template>
-  <div class="min-h-screen bg-white">
-    <div class="w-full h-6 bg-repeat-x" style="background-image: url('data:image/svg+xml;utf8,<svg width=\'120\' height=\'24\' viewBox=\'0 0 120 24\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0 24C20 0 100 48 120 24V0H0V24Z\' fill=\'#fbc2eb\' fill-opacity=\'0.5\'/></svg>');"></div>
-    <header class="bg-pink-50 border-b-2 border-pink-200 py-3 px-6 flex items-center justify-between shadow-sm relative z-10">
-      <div class="flex items-center gap-2">
-        <span class="otaku-title text-2xl text-pink-600 tracking-wide">OtakuStream</span>
-        <span class="text-2xl">🍥</span>
-      </div>
-      <nav class="flex gap-6 text-base">
-        <router-link to="/" class="hover:text-pink-500 transition font-semibold">Accueil</router-link>
-        <router-link to="/animes" class="hover:text-pink-500 transition font-semibold">Animés</router-link>
-        <router-link to="/about" class="hover:text-pink-500 transition font-semibold">À propos</router-link>
-      </nav>
-    </header>
-    <main class="max-w-5xl mx-auto py-8 px-4">
+  <div id="app" class="min-h-screen">
+    <Navbar />
+    <main class="transition-all duration-500 ease-in-out">
       <router-view />
     </main>
-    <footer class="text-center text-gray-400 py-6 text-xs flex flex-col items-center gap-2">
-      <span>© 2024 OtakuStream. Tous droits réservés.</span>
-      <span class="text-lg">🍥 Merci de soutenir la culture Otaku !</span>
-      <span class="italic text-pink-400">"L'anime, c'est la porte vers un autre monde !"</span>
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="otaku-title text-2xl mb-4">AnimeStream</p>
+        <p class="text-gray-400">Votre destination pour les meilleurs animes © 2024</p>
+      </div>
     </footer>
   </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+import Navbar from './components/Navbar.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Navbar
+  }
+}
+</script>
+
+<style>
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.router-link-exact-active {
+  color: #ec4899 !important;
 }
 </style>
