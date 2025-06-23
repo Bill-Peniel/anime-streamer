@@ -3,9 +3,9 @@
   <div>
     <HeroSection />
     
-    <section class="py-16 px-4">
+    <section class="py-12 lg:py-20 px-4 lg:px-8">
       <div class="max-w-7xl mx-auto">
-        <h2 class="otaku-title text-4xl text-center mb-12 animate-bounce">
+        <h2 class="otaku-title text-3xl lg:text-5xl text-center mb-8 lg:mb-16 animate-bounce">
           Animes Populaires
         </h2>
         
@@ -13,7 +13,7 @@
           <LoadingSpinner message="Chargement des animes populaires..." />
         </div>
         
-        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8">
           <div 
             v-for="(anime, index) in featuredAnimes" 
             :key="anime.id"
@@ -38,10 +38,10 @@
       </div>
     </section>
     
-    <section class="bg-gray-50 py-16 px-4">
+    <section class="bg-gray-50 py-12 lg:py-20 px-4 lg:px-8">
       <div class="max-w-7xl mx-auto text-center">
-        <h2 class="otaku-title text-4xl mb-8">Pourquoi AnimeStream ?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <h2 class="otaku-title text-3xl lg:text-5xl mb-8 lg:mb-12">Pourquoi AnimeStream ?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
           <div class="feature-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
             <div class="text-6xl mb-4">🎌</div>
             <h3 class="text-xl font-bold mb-2">Vaste Collection</h3>

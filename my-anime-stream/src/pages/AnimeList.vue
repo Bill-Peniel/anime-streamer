@@ -1,15 +1,15 @@
 
 <template>
-  <div class="min-h-screen bg-gray-50 py-8">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-8">
-        <h1 class="otaku-title text-5xl mb-4">Catalogue des Animes</h1>
-        <p class="text-xl text-gray-600">Découvrez notre collection complète</p>
+  <div class="min-h-screen bg-gray-50 py-8 lg:py-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-8 lg:mb-12">
+        <h1 class="otaku-title text-4xl lg:text-6xl mb-4">Catalogue des Animes</h1>
+        <p class="text-lg lg:text-xl text-gray-600">Découvrez notre collection complète</p>
       </div>
       
       <!-- Barre de recherche et filtres -->
-      <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-        <div class="flex flex-col lg:flex-row gap-4 items-center">
+      <div class="bg-white rounded-2xl shadow-lg p-6 lg:p-8 mb-8 lg:mb-12">
+        <div class="flex flex-col lg:flex-row gap-4 lg:gap-6 items-center">
           <div class="flex-1 relative">
             <input 
               v-model="searchQuery"
@@ -52,7 +52,7 @@
         <p class="text-gray-500">Essayez de modifier vos critères de recherche</p>
       </div>
       
-      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8">
         <div 
           v-for="(anime, index) in paginatedAnimes" 
           :key="anime.id"
