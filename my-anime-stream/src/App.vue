@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="min-h-screen">
     <Navbar />
-    <main class="transition-all duration-500 ease-in-out">
+    <main class="w-full">
       <router-view />
     </main>
     <footer class="bg-gray-800 text-white py-8 mt-16">
