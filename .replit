@@ -1,0 +1,8 @@
+modules = ["vue-node-20", "web", "nodejs-20"]
+run = "cd my-anime-stream && npm install  && npm run dev"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "cd my-anime-stream && npm install  && npm run dev"]
